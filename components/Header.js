@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { MdSearch } from 'react-icons/md'
 import { AiOutlineClose } from 'react-icons/ai'
 import { TbMinusVertical } from 'react-icons/tb'
@@ -8,6 +8,7 @@ import { useRouter } from 'next/router'
 
 function Header() {
     const router = useRouter();
+    const [inputValue, setInputValue] = useState('');
     const searchInputRef = useRef(null);
     const search = (e) => {
         e.preventDefault();
@@ -15,16 +16,20 @@ function Header() {
         if (!term) return;
         router.push(`/search?term=${term}&start=0`);
     }
+    useEffect(() => {
+        if (router.isReady)
+            setInputValue(router.query.term)
+    }, [])
     return (
         <header className='w-full flex items-center py-1 px-2'>
             <img src="/google-logo.png" alt=""
                 className='w-20 sm:w-24 ' />
             <form onSubmit={search}
                 className='rounded-full px-5 mx-5 sm:mx-10 md:mx-16 mr-auto  py-1 shadow-md  flex space-x-1.5 sm:space-x-2 items-center text-lg  w-72  xs:w-80 sm:w-[450px] md:w-[600px]  ring-1 ring-gray-200 focus-within:shadow-lg transition'>
-                <input ref={searchInputRef}
+                <input ref={searchInputRef} value={inputValue} onChange={(e) => { setInputValue(e.target.value) }}
                     type="text" name="" id="" placeholder={'Search Google'}
                     className='bg-transparent outline-none w-full' />
-                <AiOutlineClose onClick={() => { searchInputRef.current.value = '' }}
+                <AiOutlineClose onClick={() => { searchInputRef.current.value = ''; searchInputRef.current.focus() }}
                     className='text-2xl transition text-gray-500 hover:text-black cursor-pointer' />
                 <TbMinusVertical className='text-3xl transition text-gray-500 hidden xs:block' />
                 <MdSearch className='text-2xl transition text-blue-500 cursor-pointer hidden xs:block' />

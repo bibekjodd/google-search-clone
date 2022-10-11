@@ -12,7 +12,7 @@ function SearchResults({ results }) {
                     className='max-w-xl mb-8'>
                     <div>
                         <a href={result.link}
-                            className='text-sm font-medium text-gray-700'>
+                            className='text-sm font-medium text-gray-700 whitespace-normal  line-clamp-1'>
                             {result.formattedUrl}
                         </a>
                         <a href={result.link}>

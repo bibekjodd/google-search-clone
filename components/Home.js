@@ -14,7 +14,7 @@ function Home() {
     }
     return (
         <div className='w-full flex flex-col h-screen text-base'>
-            <header className='w-full flex px-5 py-2 justify-end space-x-2 items-center '>
+            <header className='w-full flex px-4 sm:px-5 py-2 justify-end space-x-2 items-center '>
                 <span className='hover:underline cursor-pointer p-1'>Gmail</span>
                 <span className='hover:underline cursor-pointer p-1 '>Images</span>
                 <div className='p-1 hover:bg-gray-100 rounded-full cursor-pointer'>
@@ -49,7 +49,7 @@ function Home() {
 
 
             {/* bottom */}
-            <div className='w-full flex flex-row items-center px-5 py-2 flex-wrap justify-center'>
+            <div className='w-full flex flex-row items-center px-5 py-2 flex-wrap justify-center text-sm'>
                 <span className='hover:underline cursor-pointer mx-2.5 hidden sm:block'>About</span>
                 <span className='hover:underline cursor-pointer mx-2.5 hidden sm:block'>Advertising</span>
                 <span className='hover:underline cursor-pointer mx-2.5 hidden sm:block' >How Search works</span>
